@@ -1,0 +1,10 @@
+# /public/.htaccess
+
+RewriteEngine On
+
+# Si l'URL ne pointe pas vers un fichier existant
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rediriger vers index.php avec des paramètres de requête
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
