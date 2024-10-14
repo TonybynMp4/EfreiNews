@@ -14,11 +14,9 @@ require_once '../app/repositories/ArticleRepository.php';
 require_once '../app/repositories/AccountRepository.php';
 
 $url = isset($_GET['url']) ? $_GET['url'] : null;
-
 if ($url) {
     // Séparer les parties de l'URL
     $url = explode('/', $url);
-
     // Le premier segment correspond au contrôleur
     $controller = ucfirst($url[0]) . 'Controller';
     // Le deuxième segment correspond à l'action
