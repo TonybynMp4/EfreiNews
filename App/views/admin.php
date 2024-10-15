@@ -1,19 +1,29 @@
-<div x-data="{ title: '', content: ''}">
-
-    <form action="<?php echo CONTROLLER_PATH; ?>AdminController.php" method="post">
-        <fieldset style="display:flex; flex-direction:column; width:50%; gap: 1em; margin-inline:auto; margin-bottom: 1em; background: var(--background-secondary); padding: 1em; border-radius: 1em;">
+<div x-data="{
+    title: '',
+    content: '',
+    error: '<?= $data['error'] ?? '' ?>'
+}">
+    <template x-if="error">
+        <div x-text="error" style="color: red; margin: 1em auto;"></div>
+    </template>
+    <form action="/efreinews/public/Admin/createArticle" method="post">
+        <fieldset style="display:flex; flex-direction:column; width:50%; gap: 1em; margin-inline:auto; margin-bottom: 1em; background: var(--background-tertiary); padding: 1em; border-radius: 1em;">
             <legend>Créer un article</legend>
             <label for="title">Titre</label>
-            <input type="text" id="title" x-model="title" placeholder="Titre de l'article" required>
+            <input type="text" name="title" id="title" x-model="title" placeholder="Titre de l'article" required>
             <label for="content">Contenu</label>
-            <textarea id="content" x-model="content" rows="10" placeholder="Contenu de l'article" required></textarea>
+            <textarea name="content" id="content" rows="10" placeholder="Contenu de l'article" required x-model="content">
+            </textarea>
             <button>Créer un article</button>
         </fieldset>
     </form>
 
     <fieldset class="article">
         <legend>Prévisualisation de l'article</legend>
-        <h2 x-text="title"></h2>
-        <p x-text="content"></p>
+        <h2 x-text="title" style="margin-top: 0.5em; margin-bottom: 0; font-size:2.5rem;">
+        </h2>
+        <p style="margin: 0.1em; font-size:small;">Publié par <strong><?= $_SESSION['user'] ?></strong> le <time format="YYYY/MM/DD"><?= date('Y/m/d') ?></time></p></time></p>
+        <hr style="margin: 0.1em 0;">
+        <div class="article-content" x-html="marked.parse(content)"></div>
     </div>
 </div>
