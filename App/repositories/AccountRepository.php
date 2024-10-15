@@ -8,12 +8,26 @@ class AccountRepository extends Repository {
         parent::__construct();
     }
 
-    public function login($username, $password) {
-        $query = $this->db->prepare('SELECT * FROM users WHERE username = :username AND password = :password');
-        $query->execute(['username' => $username, 'password' => $password]);
-        $user = $query->fetch();
+    public function register($username, $password, $role) {
+        $query = "INSERT INTO users (username, password, role) VALUES (:username, :password, :role)";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([
+            'username' => $username,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+            'role' => $role
+        ]);
 
-        if ($user) {
+        return $stmt->rowCount() > 0;
+    }
+
+    public function login($login_username, $login_password) {
+        $query = "SELECT * FROM users WHERE username = :login_username";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(['login_username' => $login_username]);
+        $user = $stmt->fetch();
+
+        // Check si l'utilisateur existe et si le mot de passe est correct
+        if ($user && password_verify($login_password, $user['password'])) {
             $this->username = $user['username'];
             $this->userId = $user['id'];
             $this->role = $user['role'];
@@ -25,6 +39,14 @@ class AccountRepository extends Repository {
         }
 
         return false;
+    }
+
+    public function isLoggedIn() {
+        return isset($_SESSION['user']);
+    }
+
+    public function isAdmin() {
+        return $this->role === 'admin';
     }
 
     public function getUsername() {
