@@ -4,7 +4,7 @@
     error: '<?= $data['error'] ?? '' ?>'
 }">
     <template x-if="error">
-        <div x-text="error" style="color: red; margin: 1em auto;"></div>
+        <div x-text="error" class="alert-error"></div>
     </template>
     <form action="<?= BASE_URL ?>Admin/createArticle" method="post">
         <fieldset style="display:flex; flex-direction:column; width:50%; gap: 1em; margin-inline:auto; margin-bottom: 1em; background: var(--background-tertiary); padding: 1em; border-radius: 1em;">
