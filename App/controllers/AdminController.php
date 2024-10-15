@@ -2,16 +2,31 @@
 class AdminController extends Controller {
 
     public function __construct() {
-        // Check if the user is logged in
         if (!isset($_SESSION['user'])) {
-            // Redirect to the login page
             $this->view('login');
             exit;
         }
     }
 
+    public function createArticle() {
+        $args = [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = htmlspecialchars($_POST['title']);
+            $content = htmlspecialchars($_POST['content']);
+            $author = $_SESSION['userId'];
+
+            if ((new ArticleRepository())->createArticle($title, $content, $author)) {
+                header('Location: /efreinews/public/Home/index');
+                exit;
+            } else {
+                $args['error'] = "Erreur lors de la création de l'article.";
+            }
+        }
+
+        $this->view('admin', $args);
+    }
+
     public function index() {
-        // Load the view with the data
         $this->view('admin');
     }
 }
