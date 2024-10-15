@@ -14,7 +14,7 @@ class AccountController extends Controller {
             $role = $_POST['role'];
 
             if ($this->accountRepository->register($username, $password, $role)) {
-                header('Location: /efreinews/public/');
+                header('Location: ' . BASE_URL);
                 exit;
             } else {
                 $args['error'] = "Erreur lors de l'inscription.";
@@ -31,7 +31,7 @@ class AccountController extends Controller {
             $password = $_POST['password'];
 
             if ($this->accountRepository->login($username, $password)) {
-                header('Location: /efreinews/public/');
+                header('Location: ' . BASE_URL);
                 exit;
             } else {
                 $args['error'] = "Nom d\'utilisateur ou mot de passe incorrect.";
@@ -43,6 +43,6 @@ class AccountController extends Controller {
 
     public function logout() {
         session_destroy();
-        header('Location: /efreinews/public/');
+        header('Location: ' . BASE_URL);
     }
 }

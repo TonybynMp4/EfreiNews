@@ -16,7 +16,7 @@ class AdminController extends Controller {
             $author = $_SESSION['userId'];
 
             if ((new ArticleRepository())->createArticle($title, $content, $author)) {
-                header('Location: /efreinews/public/Home/index');
+                header('Location: '. BASE_URL .'Home/index');
                 exit;
             } else {
                 $args['error'] = "Erreur lors de la création de l'article.";

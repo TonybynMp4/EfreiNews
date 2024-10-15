@@ -2,7 +2,7 @@
     <template x-if="error">
         <div x-text="error" style="color: red; margin: 1em auto;"></div>
     </template>
-    <form action="/efreinews/public/Account/register" method="post">
+    <form action="<?= BASE_URL ?>Account/register" method="post">
         <fieldset style="display:flex; flex-direction:column; width:30%; gap: 1em; margin-inline:auto; padding: 1em; border-radius: 1em;">
             <legend>
                 Créer un compte
@@ -21,7 +21,7 @@
             <button>Créer un compte</button>
         </fieldset>
     </form>
-    <a href="/efreinews/public/Account/login" style="font-style: italic; text-decoration:none; margin: 1em auto;">
+    <a href="<?= BASE_URL ?>Account/login" style="font-style: italic; text-decoration:none; margin: 1em auto;">
         Déjà inscrit ?
     </a>
 </main>
