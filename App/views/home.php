@@ -5,7 +5,7 @@
             <button class="primary" @click="show = false">Cacher</button>
         </div>
     <?php endif; ?>
-    <h1>All Articles</h1>
+    <h1>Articles récents</h1>
     <div class="articles" x-cloak x-data="{ articles: <?php echo htmlspecialchars(json_encode($articles)); ?> }">
         <?php require 'article.php'; ?>
         <template x-if="!articles.length">
