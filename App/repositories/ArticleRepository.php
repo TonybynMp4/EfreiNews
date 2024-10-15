@@ -3,7 +3,7 @@ class ArticleRepository extends Repository {
 
     // Méthode pour récupérer tous les articles
     public function getAllArticles() {
-        $stmt = $this->db->prepare("SELECT articles.id, articles.title, articles.content, DATE_FORMAT(articles.created_at, '%Y-%m-%d') as created_at, users.name FROM articles INNER JOIN users ON articles.author = users.id");
+        $stmt = $this->db->prepare("SELECT articles.id, articles.title, articles.content, DATE_FORMAT(articles.created_at, '%Y-%m-%d') as created_at, users.username FROM articles INNER JOIN users ON articles.author = users.id");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
