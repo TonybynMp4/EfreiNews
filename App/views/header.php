@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Efrei News</title>
-    <link rel="stylesheet" href="/Mvc/public/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,600,700|Product+Sans:400&display=swap&lang=en">
     <script src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@latest/dist/cdn.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs"></script>
     <script>
