@@ -25,16 +25,24 @@ class AccountController extends Controller {
     }
 
     public function login() {
+        $args = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
 
             if ($this->accountRepository->login($username, $password)) {
-                $this->view('home');
+                header('Location: /efreinews/public/');
                 exit;
+            } else {
+                $args['error'] = "Nom d\'utilisateur ou mot de passe incorrect.";
             }
         }
 
-        $this->view('login');
+        $this->view('login', $args);
+    }
+
+    public function logout() {
+        session_destroy();
+        header('Location: /efreinews/public/');
     }
 }
