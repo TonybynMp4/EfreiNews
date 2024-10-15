@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once '../config/config.php';
 
@@ -36,3 +37,5 @@ if (class_exists($controller) && method_exists($controller, $action)) {
 } else {
     echo "Erreur 404 : Contrôleur ou action non trouvée.";
 }
+
+require_once '../App/views/footer.php';

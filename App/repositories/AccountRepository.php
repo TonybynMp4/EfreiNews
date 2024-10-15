@@ -1,5 +1,4 @@
 <?php
-session_start();
 class AccountRepository extends Repository {
     private $username;
     private $userId;
