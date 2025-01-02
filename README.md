@@ -6,9 +6,11 @@ Ce projet est un petit site d'actualité sur le thème (super original) de l'Efr
 Pour utiliser ce projet,
 
 - Mettez les fichiers sur un serveur web supportant PHP & Apache (Xampp en gros).
+  - Ou vous pouvez utiliser la commande `php -S localhost:8000 -t public/` depuis la racine du projet
 - Configurez le fichier `config.php`.
     - Remplissez les champs `DB_` avec les informations de votre base de données.
-    - Remplissez le champ `BASE_URL` avec le chemin vers index.php (ex: vous avez mis le projet dans un dossier `efreinews` à la racine de votre serveur, donc `BASE_URL` sera `/efreinews/public/`).
+        - Si vous n'utilisez pas la commande `php -S ...`, Remplissez le champ `BASE_URL` avec le chemin vers le dossier contenant index.php
+            - (ex: vous avez mis le projet dans un dossier `efreinews` à la racine de votre serveur, donc `BASE_URL` sera `/efreinews/public/`).
 - Exécutez le script `db.sql` pour créer la base de données pour créer les tables nécessaires.
 - Rendez vous sur l'URl correspondante (localhost)
 
