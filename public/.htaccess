@@ -3,8 +3,8 @@
 RewriteEngine On
 
 # Exclude CSS and image files from being redirected
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f [OR]
+RewriteCond %{REQUEST_FILENAME} !-d [OR]
 RewriteCond %{REQUEST_URI} !\.(css|jpg|jpeg|png|gif|ico)$
 
 # Rediriger vers index.php avec des paramètres de requête

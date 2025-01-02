@@ -13,7 +13,7 @@ require_once '../app/controllers/AccountController.php';
 require_once '../app/repositories/ArticleRepository.php';
 require_once '../app/repositories/AccountRepository.php';
 
-$url = isset($_SERVER['REQUEST_URI']) ? ltrim($_SERVER['REQUEST_URI'], '/') : null;
+$url = isset($_GET['url']) ? $_GET['url'] : (isset($_SERVER['REQUEST_URI']) ? ltrim($_SERVER['REQUEST_URI'], '/') : null);
 if ($url) {
     // Séparer les parties de l'URL
     $url = explode('/', $url);
