@@ -3,9 +3,8 @@ session_start();
 
 require_once '../config/config.php';
 
-require_once '../App/views/header.php';
+require_once '../app/views/header.php';
 require_once '../core/Controller.php';
-require_once '../core/Model.php';
 require_once '../core/Repository.php';
 
 require_once '../app/controllers/HomeController.php';
@@ -14,7 +13,7 @@ require_once '../app/controllers/AccountController.php';
 require_once '../app/repositories/ArticleRepository.php';
 require_once '../app/repositories/AccountRepository.php';
 
-$url = isset($_GET['url']) ? $_GET['url'] : null;
+$url = isset($_SERVER['REQUEST_URI']) ? ltrim($_SERVER['REQUEST_URI'], '/') : null;
 if ($url) {
     // Séparer les parties de l'URL
     $url = explode('/', $url);
@@ -30,7 +29,6 @@ if ($url) {
     $id = null;
 }
 
-// Appeler le contrôleur et l'action comme dans l'exemple précédent
 if (class_exists($controller) && method_exists($controller, $action)) {
     $controllerInstance = new $controller();
     $controllerInstance->$action($id);
@@ -38,4 +36,4 @@ if (class_exists($controller) && method_exists($controller, $action)) {
     echo "Erreur 404 : Contrôleur ou action non trouvée.";
 }
 
-require_once '../App/views/footer.php';
+require_once '../app/views/footer.php';
