@@ -37,7 +37,7 @@
         <nav>
             <a class="button" href="<?= BASE_URL ?>Home/index">Home</a>
             <?php if (isset($_SESSION['user'])): ?>
-                <?php if ($_SESSION['role'] === 'admin'): ?>
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                     <a class="button" href="<?= BASE_URL ?>Admin/index">Admin</a>
                 <?php endif; ?>
                 <a class="button" href="<?= BASE_URL ?>Account/logout">Logout</a>
